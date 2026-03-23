@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thulir Mess - Pure Vegetarian & Non-Veg Delights | Salem to Chennai NH-179A</title>
+    <title>Thulir Mess - Authentic South Indian Veg & Non-Veg | NH-179A Dharmapuri</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,17 @@
         }
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #4CAF50, #45a049, #2E7D32);
+            background: linear-gradient(135deg, #4CAF50 0%, #FF5722 25%, #4CAF50 50%, #F44336 75%, #2E7D32 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .container {
             max-width: 1200px;
@@ -23,152 +30,208 @@
             padding: 20px;
         }
         header {
-            background: rgba(255,255,255,0.95);
-            padding: 20px;
-            border-radius: 15px;
+            background: rgba(255,255,255,0.98);
+            padding: 30px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
             margin-bottom: 30px;
+            border: 3px solid #4CAF50;
         }
         h1 {
             color: #2E7D32;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
         .tagline {
-            font-size: 1.2em;
-            color: #4CAF50;
+            font-size: 1.4em;
+            color: #FF5722;
             font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .single-page-note {
+            background: rgba(255,255,255,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #F44336;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
         }
         .quick-menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin: 30px 0;
         }
         .menu-card {
             background: rgba(255,255,255,0.95);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        .menu-card:hover::before {
+            left: 100%;
         }
         .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+            border-color: #4CAF50;
         }
+        .menu-card.veg { border-top: 5px solid #4CAF50; }
+        .menu-card.nonveg { border-top: 5px solid #FF5722; }
         .menu-card h2 {
-            color: #2E7D32;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            border-bottom: 3px solid #4CAF50;
-            padding-bottom: 10px;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid;
         }
+        .menu-card.veg h2 { color: #2E7D32; border-bottom-color: #4CAF50; }
+        .menu-card.nonveg h2 { color: #D32F2F; border-bottom-color: #FF5722; }
         .menu-item {
-            background: #f8f9fa;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 10px;
-            border-left: 5px solid #4CAF50;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            margin: 12px 0;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 6px solid;
             transition: all 0.3s ease;
+            font-size: 1.1em;
+            cursor: pointer;
         }
+        .menu-card.veg .menu-item { border-left-color: #4CAF50; }
+        .menu-card.nonveg .menu-item { border-left-color: #FF5722; }
         .menu-item:hover {
-            background: #e8f5e8;
-            transform: scale(1.02);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         .order-btn {
             display: block;
             width: 100%;
-            background: linear-gradient(45deg, #4CAF50, #45a049);
+            background: linear-gradient(45deg, #4CAF50, #FF5722);
             color: white;
-            padding: 15px;
+            padding: 20px;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
+            border-radius: 15px;
+            font-size: 1.3em;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
+            margin-top: 25px;
+            transition: all 0.4s ease;
             text-decoration: none;
             text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         .order-btn:hover {
-            background: linear-gradient(45deg, #45a049, #2E7D32);
-            transform: scale(1.05);
+            background: linear-gradient(45deg, #FF5722, #4CAF50);
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         .location-contact {
-            background: rgba(255,255,255,0.95);
-            padding: 30px;
-            border-radius: 15px;
+            background: rgba(255,255,255,0.98);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            margin: 30px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin: 40px 0;
+            border: 4px double #4CAF50;
         }
         .location-btn {
-            background: #FF5722;
+            background: linear-gradient(45deg, #FF5722, #F44336);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 35px;
             border: none;
             border-radius: 50px;
-            font-size: 1.1em;
+            font-size: 1.2em;
             cursor: pointer;
-            margin: 10px;
+            margin: 15px;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            font-weight: bold;
         }
         .location-btn:hover {
-            background: #E64A19;
-            transform: scale(1.1);
+            background: linear-gradient(45deg, #4CAF50, #FF5722);
+            transform: scale(1.15) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         .contact-info {
-            font-size: 1.3em;
-            margin: 20px 0;
+            font-size: 1.5em;
+            margin: 25px 0;
             color: #2E7D32;
+            font-weight: bold;
         }
         .agri-promo {
-            background: linear-gradient(135deg, #66BB6A, #4CAF50);
+            background: linear-gradient(135deg, rgba(76,175,80,0.95), rgba(255,87,34,0.95));
             color: white;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 35px;
+            border-radius: 20px;
             text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin: 40px 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.3);
         }
         .agri-promo h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             color: white;
-            font-size: 1.1em;
-            background: rgba(0,0,0,0.2);
-            border-radius: 15px;
+            font-size: 1.2em;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 40px;
         }
         @media (max-width: 768px) {
-            h1 { font-size: 2em; }
+            h1 { font-size: 2.2em; }
             .quick-menu { grid-template-columns: 1fr; }
+            .menu-card { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🌿 Thulir Mess 🌿</h1>
-            <p class="tagline">Fresh Farm-to-Table Authentic South Indian Cuisine | Pure Veg & Non-Veg</p>
+            <h1>🌿🍲 Thulir Mess 🍲🌿</h1>
+            <p class="tagline">Salem to Chennai NH-179A | Pure Veg & Non-Veg Delights</p>
+            <div class="single-page-note">
+                📋 All Food Menus Available in Single Page | Quick Order Veg & Non-Veg Items!
+            </div>
         </header>
 
         <div class="agri-promo">
-            <h3>🥬 Supporting Local Agriculture 🥬</h3>
-            <p>Thulir Mess proudly sources fresh vegetables, grains, and ingredients directly from local farmers. Promoting sustainable agriculture and farm-fresh taste in every bite!</p>
+            <h3>🌾 Promoting Local Agriculture 🌾</h3>
+            <p><strong>Thulir Mess sources fresh vegetables, rice, and spices directly from local farmers along NH-179A.</strong><br>
+            Farm-fresh ingredients in every delicious meal! Supporting sustainable farming & authentic taste.</p>
         </div>
 
         <div class="quick-menu">
-            <div class="menu-card">
-                <h2>🍳 Breakfast</h2>
+            <div class="menu-card veg">
+                <h2>🍳 Breakfast Menu</h2>
                 <div class="menu-item">Idli</div>
                 <div class="menu-item">Dosa (Various Types)</div>
                 <div class="menu-item">Pongal</div>
@@ -180,8 +243,8 @@
                 <a href="tel:9047482323" class="order-btn">📞 Order Breakfast Now</a>
             </div>
 
-            <div class="menu-card">
-                <h2>🍛 Lunch</h2>
+            <div class="menu-card veg">
+                <h2>🍛 Lunch Menu</h2>
                 <div class="menu-item">White Rice</div>
                 <div class="menu-item">Sambar</div>
                 <div class="menu-item">Rasam</div>
@@ -192,22 +255,22 @@
                 <div class="menu-item">Pickle</div>
                 <div class="menu-item">Appalam</div>
                 <div class="menu-item">Vadai</div>
-                <div class="menu-item">Fish/Chicken Curry</div>
                 <a href="tel:9047482323" class="order-btn">📞 Order Lunch Now</a>
             </div>
 
-            <div class="menu-card">
-                <h2>🌙 Dinner</h2>
+            <div class="menu-card nonveg">
+                <h2>🌙 Dinner Menu</h2>
                 <div class="menu-item">Parotta</div>
                 <div class="menu-item">Chapati</div>
                 <div class="menu-item">Dosa</div>
                 <div class="menu-item">Paneer Butter Masala</div>
                 <div class="menu-item">Dal</div>
+                <div class="menu-item">Fish Curry</div>
                 <div class="menu-item">Chicken Curry</div>
                 <a href="tel:9047482323" class="order-btn">📞 Order Dinner Now</a>
             </div>
 
-            <div class="menu-card">
+            <div class="menu-card nonveg">
                 <h2>🍵 Snacks & Specialties</h2>
                 <div class="menu-item">Tea & Coffee</div>
                 <div class="menu-item">Samosa</div>
@@ -224,22 +287,26 @@
         </div>
 
         <div class="location-contact">
-            <h2>📍 Location</h2>
-            <p><strong>Salem to Chennai National Highway NH-179A</strong></p>
-            <p>Pappampadi Near H.Pudupatti Bus Stop</p>
-            <p>Pappireddipatti Taluk, Dharmapuri</p>
-            <p>Tamil Nadu 636904</p>
+            <h2 style="color: #2E7D32; font-size: 2.2em; margin-bottom: 20px;">📍 Find Us Here</h2>
+            <p style="font-size: 1.3em; margin-bottom: 10px;">
+                <strong>Salem to Chennai National Highway NH-179A</strong>
+            </p>
+            <p style="font-size: 1.2em;">Pappampadi Near H.Pudupatti Bus Stop</p>
+            <p style="font-size: 1.2em;">Pappireddipatti Taluk, Dharmapuri</p>
+            <p style="font-size: 1.2em; font-weight: bold;">Tamil Nadu 636904</p>
             
-            <a href="https://maps.app.goo.gl/3qKjKbUzxUG22Ri49" target="_blank" class="location-btn">🗺️ Open in Google Maps</a>
-            <a href="tel:9047482323" class="location-btn">📞 Call: 9047482323</a>
+            <div style="margin: 30px 0;">
+                <a href="https://maps.app.goo.gl/3qKjKbUzxUG22Ri49" target="_blank" class="location-btn">🗺️ Google Maps</a>
+                <a href="tel:9047482323" class="location-btn">📱 Call 9047482323</a>
+            </div>
             
             <div class="contact-info">
-                <strong>Quick Order Both Veg & Non-Veg Items!</strong>
+                ✅ Thulir Mess - Ready to serve both Veg & Non-Veg orders instantly!
             </div>
         </div>
 
         <footer>
-            <p>🌱 Thulir Mess - Where Freshness Meets Tradition | Serving Dharmapuri Since Day One 🌱</p>
+            <p>🌿 Thulir Mess | Farm Fresh • Highway Dining • Authentic Flavors | Dharmapuri NH-179A 🌿</p>
         </footer>
     </div>
 </body>
